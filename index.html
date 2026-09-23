@@ -30,6 +30,41 @@
 		#scene-annotated-figure #scene-annotated #annotations line {
 			pointer-events: none;
 		}
+
+		/* Step 3 styling is scoped to the adjusted scene only. */
+		#scene-adjusted .adjusted-house {
+			stroke: #512d20;
+			stroke-width: 6;
+		}
+
+		#scene-adjusted .adjusted-window {
+			stroke: #24566b;
+			stroke-width: 5;
+		}
+
+		#scene-adjusted .adjusted-fence {
+			stroke: #ffffff;
+			stroke-width: 6;
+			stroke-dasharray: 12 8;
+		}
+
+		#scene-adjusted .stone-footpath {
+			fill: #d6d3c4;
+			stroke: #4f5d66;
+			stroke-width: 4;
+		}
+
+		#scene-adjusted .mailbox {
+			fill: #2f6474;
+			stroke: #193b47;
+			stroke-width: 3;
+		}
+
+		#scene-adjusted .smoke {
+			fill: #e1e7ea;
+			stroke: #87949b;
+			stroke-width: 2;
+		}
 	</style>
 </head>
 <body>
@@ -153,6 +188,71 @@
 			</g>
 		</svg>
 		<figcaption>Annotated scene (Step 2)</figcaption>
+	</figure>
+
+	<figure id="scene-adjusted-figure">
+		<svg id="scene-adjusted" viewBox="0 0 800 500" role="img" aria-labelledby="scene-adjusted-title scene-adjusted-desc">
+			<title id="scene-adjusted-title">An adjusted house and garden scene</title>
+			<desc id="scene-adjusted-desc">A sunny garden with a balanced house and tree, dashed fence, stone footpath, mailbox, and chimney smoke.</desc>
+
+			<!-- Sky and grass remain on the original 800 by 500 coordinate scale. -->
+			<rect x="0" y="0" width="800" height="350" fill="#bfe7ff"></rect>
+			<rect x="0" y="350" width="800" height="150" fill="#8bcf70"></rect>
+
+			<!-- Sun and cloud keep their original positions. -->
+			<circle cx="680" cy="90" r="48" fill="#ffd447" stroke="#e3a91a" stroke-width="4"></circle>
+			<ellipse cx="155" cy="105" rx="75" ry="28" fill="#ffffff"></ellipse>
+			<circle cx="105" cy="105" r="30" fill="#ffffff"></circle>
+			<circle cx="175" cy="92" r="38" fill="#ffffff"></circle>
+
+			<!-- Balance adjustment: move the tree slightly left. -->
+			<g transform="translate(-12, 0)">
+				<rect x="105" y="270" width="34" height="115" fill="#87552f"></rect>
+				<circle cx="122" cy="220" r="62" fill="#3f9d50"></circle>
+				<circle cx="78" cy="250" r="46" fill="#4eac55"></circle>
+				<circle cx="170" cy="252" r="50" fill="#388c48"></circle>
+			</g>
+
+			<!-- Balance adjustment: move the house slightly right and strengthen its outlines. -->
+			<g transform="translate(12, 0)">
+				<rect class="adjusted-house" x="290" y="235" width="275" height="170" fill="#f4c27a"></rect>
+				<polygon class="adjusted-house" points="265,240 428,105 590,240" fill="#c95c45"></polygon>
+				<rect class="adjusted-house" x="480" y="142" width="42" height="85" fill="#8d5540"></rect>
+
+				<!-- Door and windows use varied, higher-contrast stroke widths. -->
+				<rect class="adjusted-house" x="395" y="315" width="62" height="90" fill="#68432d"></rect>
+				<circle cx="444" cy="360" r="5" fill="#f7d36b"></circle>
+				<rect class="adjusted-window" x="320" y="275" width="52" height="48" fill="#8ed8ed"></rect>
+				<line class="adjusted-window" x1="346" y1="275" x2="346" y2="323"></line>
+				<line class="adjusted-window" x1="320" y1="299" x2="372" y2="299"></line>
+				<rect class="adjusted-window" x="485" y="275" width="52" height="48" fill="#8ed8ed"></rect>
+				<line class="adjusted-window" x1="511" y1="275" x2="511" y2="323"></line>
+				<line class="adjusted-window" x1="485" y1="299" x2="537" y2="299"></line>
+			</g>
+
+			<!-- Fence adjustment: improve contrast and use a dashed stroke. -->
+			<polyline class="adjusted-fence" points="25,365 25,315 55,335 85,315 115,335 145,315 175,335 205,315 235,335 235,365" fill="none" stroke-linejoin="round"></polyline>
+			<line class="adjusted-fence" x1="25" y1="345" x2="235" y2="345"></line>
+
+			<!-- Original garden path is retained; the new stone path is added below. -->
+			<path d="M 425 405 C 405 430, 355 442, 330 500 L 505 500 C 482 445, 455 425, 442 405 Z" fill="#dfc08c" stroke="#b08a5a" stroke-width="3"></path>
+
+			<!-- New curved stone footpath leads from the shifted door to the foreground. -->
+			<path class="stone-footpath" d="M 438 405 C 455 430, 490 455, 525 500 L 455 500 C 455 460, 440 430, 438 405 Z"></path>
+
+			<!-- New mailbox: a post, rectangular box, and peaked top beside the path. -->
+			<line class="mailbox" x1="565" y1="390" x2="565" y2="440"></line>
+			<rect class="mailbox" x="550" y="365" width="30" height="25" rx="3"></rect>
+			<polygon class="mailbox" points="550,365 565,350 580,365"></polygon>
+
+			<!-- New subtle chimney smoke uses small ellipses. -->
+			<ellipse class="smoke" cx="513" cy="125" rx="13" ry="8"></ellipse>
+			<ellipse class="smoke" cx="525" cy="105" rx="16" ry="10"></ellipse>
+			<ellipse class="smoke" cx="515" cy="82" rx="11" ry="7"></ellipse>
+
+			<text x="400" y="470" text-anchor="middle" fill="#315d35" font-size="22" font-weight="bold">Welcome to the garden</text>
+		</svg>
+		<figcaption>Adjusted scene (Step 3)</figcaption>
 	</figure>
 </body>
 </html>
